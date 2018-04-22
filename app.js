@@ -45,6 +45,13 @@ app.use('/users', users);
 //     res.send('done')
 // })
 
+app.get('/list',function (req, res ) {
+    res.render('list',{
+      title : 'list',
+      items : [1991,'angular','express','node','MongoDB']
+    })
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
