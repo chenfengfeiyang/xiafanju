@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var mongoose = require('mongoose');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -25,6 +25,20 @@ app.use(express.static(path.join(__dirname, 'public')));//路由中没有路径�
 app.use('/', index);
 app.use('/users', users);
 
+
+
+
+mongoose.connect('mongodb://localhost/blog')     //连接本地数据库blog
+var db = mongoose.connection;
+
+// 连接成功
+db.on('open', function(){
+    console.log('MongoDB Connection Successed');
+});
+// 连接失败
+db.on('error', function(){
+    console.log('MongoDB Connection Error');
+});
 // var users = {
 //     'byvoid' : {
 //         name:'carbo',
